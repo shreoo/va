@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<head>
+    <title>Symptom Free Shortcut</title>
+    <script src="https://kit.fontawesome.com/b65756ee8d.js" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        body {
+            font-family: Helvetica Neue, Helvetica, Roboto, Arial, sans-serif;
+            color: white;
+            text-align: center;
+            /* font-weight: 400; */
+            /* line-height: 1.5; */
+        }
+        .covid-screener-results-pass {
+            background-color: #112e51;
+            margin: 15px;          
+            padding: 20px 0px; 
+            max-height: 100%;   
+        }
+        i { font-weight: 900; font-size: 10em;}
+
+        .vads-u-font-size--lg {
+            font-weight: 400;
+        }
+        .vads-u-font-size--2xl, .vads-u-font-size--h1 {
+            font-size: 2em;
+        }
+        .vads-u-font-size--xl {
+            font-weight: 700;
+            font-size: 2em;
+        }
+        .covid-screener-400 {
+            font-size: 400%;
+            font-weight: 700;
+        }
+        .covid-screener-500 {
+            font-size: 500%;
+            font-weight: 700;
+        }
+        .vads-u-font-size--xl {
+            font-size: 2rem!important;
+        }
+        .vads-u-font-weight--bold {
+            font-weight: 700!important;
+        }
+
+        .time-element {
+            font-size: 1.5em;
+        }
+        .please-show {
+            font-weight: 800;
+            font-size: 18px;
+            margin-top: 30px;
+
+        }
+
+    </style>
+</head>
+<body>
+    <div class="covid-screener">
+        <div class="feature covid-screener-results covid-screener-results-pass">
+            <i aria-hidden="true" role="presentation" class="fas fa-check"></i>
+            <h2 class="vads-u-font-size--2xl">OK to proceed</h2>
+            <div class="covid-screener-date vads-u-font-weight--bold">
+                <div class="vads-u-font-size--xl">Valid for</div>
+                <div class="covid-screener-400" id="dayOfWeekNow">Saturday</div>
+                <div class="covid-screener-500" id="dateNow">Oct. 31</div>
+                <div class="time-element" id="timeNow">9:15 p.m.</div>
+            </div>
+            <div class="please-show">
+                <p>Please show this screen to the staff member at the facility entrance.</p>
+                <p>Thank you for helping us protect you and others during this time.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // get current date
+        var now = new Date();
+        var time12hr = function(){
+            var h = now.getHours();
+            var ampm = h>12 ? "p.m." : "a.m."
+            h = h>12 ? h-12 : h;
+            var min = now.getMinutes()
+            min = min < 10 ? "0" + min : min;
+            return h + ":" + min + " " + ampm
+        }
+        var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        document.getElementById("dayOfWeekNow").innerText = days[now.getDay()];
+        document.getElementById("dateNow").innerText = months[now.getMonth()].substr(0,3) + ". " + now.getDate();
+        document.getElementById("timeNow").innerText = time12hr();
+    </script>
+
+</body>
+</html>
